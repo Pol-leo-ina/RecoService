@@ -1,4 +1,4 @@
-from service.models.models_classes import LightFMModel, Popular, RangeTest
+from service.models.models_classes import LightFMModel, Popular, RangeTest, DSSM_offline
 
 
 class RecommendationValidator:
@@ -10,11 +10,15 @@ class RecommendationValidator:
             'service/models/weights/offline_lightfm.pkl',
             self.popular_model)
         self.range_test = RangeTest()
+        self.dssm_offline = DSSM_offline(
+            'service/models/weights/offline_dssm_.pkl',
+            self.popular_model)
 
         self.model_names = {
             "range_test": self.range_test,
             "popular": self.popular_model,
-            'lightfm': self.lightfm
+            'lightfm': self.lightfm,
+            "dssm_offline": self.dssm_offline
         }
 
     def get_model(self, model_name: str):
