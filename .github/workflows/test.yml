@@ -6,6 +6,7 @@ on:
       - HW1
       - HW3
       - HW4
+      - HW5
   pull_request:
     types: [opened, synchronize]
 
