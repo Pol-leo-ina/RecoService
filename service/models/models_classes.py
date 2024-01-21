@@ -213,26 +213,10 @@ class PopularUserKnn:
         return reco_list
 
 
-class LightFMModel:
-    def __init__(self, offline_lightfm_path, pop_model: Popular, n=10):
+class Offline_recos:
+    def __init__(self, offline_pickle_path, pop_model: Popular, n=10):
         super().__init__()
-        with open(offline_lightfm_path, 'rb') as f:
-            self.offline_model = pickle.load(f)
-
-        self.popular_model = pop_model
-        self.n = n
-
-    def recommend(self, user_id: int):
-        recs = self.offline_model.get(user_id)
-        if recs:
-            return recs
-        return self.popular_model.get_popular_items()[:self.n]
-
-
-class DSSM_offline:
-    def __init__(self, offline_dssm_path, pop_model: Popular, n=10):
-        super().__init__()
-        with open(offline_dssm_path, 'rb') as f:
+        with open(offline_pickle_path, 'rb') as f:
             self.offline_model = pickle.load(f)
 
         self.popular_model = pop_model
