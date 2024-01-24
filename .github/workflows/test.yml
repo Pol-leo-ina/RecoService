@@ -4,6 +4,9 @@ on:
     branches:
       - master
       - HW1
+      - HW3
+      - HW4
+      - HW6
   pull_request:
     types: [opened, synchronize]
 
