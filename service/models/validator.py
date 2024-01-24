@@ -16,13 +16,17 @@ class RecommendationValidator:
         self.autoencoder = Offline_recos(
             'service/models/weights/offline_autoencoder.pkl',
             self.popular_model)
+        self.learn2rank_model = Offline_recos(
+            'service/models/weights/offline_ranker_lightfm.pkl',
+            self.popular_model)
 
         self.model_names = {
             "range_test": self.range_test,
             "popular": self.popular_model,
             "lightfm": self.lightfm,
             "dssm_offline": self.dssm_offline,
-            "autoencoder_offline": self.autoencoder
+            "autoencoder_offline": self.autoencoder,
+            "ranker": self.learn2rank_model
         }
 
     def get_model(self, model_name: str):
